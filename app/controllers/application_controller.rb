@@ -12,12 +12,20 @@ class ApplicationController < Sinatra::Base
   end
   
   helpers do
+
+    def current_user
+      User.find_by(id: session[:user_id])
+    end
+
     def logged_in?
       !!session[:user_id]
     end
-  
-    def current_user
-      User.find_by(id: session[:user_id])
+
+    def redirect_if_not_logged_in
+      if !current_user
+        # flash[:message] = "You must log in to see that page"
+        redirect '/users/login'
+      end
     end
 
     def is_not_blank?(hash)
