@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    get '/users/signup' do
+    get '/users/signup' do #CHECKED FUNCTIONALITY
         if current_user
             redirect to '/services'
         else
@@ -28,12 +28,13 @@ class UsersController < ApplicationController
     end
 
     post '/users/login' do
+        binding.pry
         user = User.find_by(email: params[:email])
         if user && user.authenticate(params[:password])
           session[:user_id] = user.id
           redirect '/services'
         else
-          redirect '/'
+          redirect '/users/login'
         end
     end
 
