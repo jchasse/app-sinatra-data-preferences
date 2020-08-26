@@ -1,5 +1,9 @@
 <a href='/services/new'>Add a New Service</a> <br>
 
-
+<ul>
+<% @user.services.each_with_index do |service, index| %>
+    <li><%= index+1%>: <%= service.name %> // <%= service.kind %> // <%= service.level %> </li>    
+<%end%>
+</ul>
 
 

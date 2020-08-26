@@ -1,12 +1,9 @@
 class ServicesController < ApplicationController
 
     get '/services' do
-        if logged_in?
-            @user = User.find_by(params)
-            erb :'services/index'
-        else
-            redirect to '/users/signup'
-        end
+        redirect_if_not_logged_in
+        @user = User.find_by(params)
+        erb :'services/index'
     end
 
     get '/services/new' do
@@ -43,14 +40,15 @@ class ServicesController < ApplicationController
     patch '/services/:id' do
         redirect_if_not_logged_in
         binding.pry
-        @service = Service.find_by(params)
-        # if is_not_blank?(params)
-        #     @service.content = params[:content]
-        #     @tweet.save
-        #     redirect to "/tweets/#{@tweet.id}"
-        # else
-        #     redirect to "/tweets/#{@tweet.id}/edit"
-        # end
+    end
+
+    delete '/services/:id' do
+        redirect_if_not_logged_in
+        service = Service.find_by(id: params[:id])
+        if check_owner(item)
+            service.delete
+        end
+          redirect '/services'
       end
 
 

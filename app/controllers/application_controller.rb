@@ -31,6 +31,10 @@ class ApplicationController < Sinatra::Base
     def is_not_blank?(hash)
       !hash.values.find {|v| v == "" || v == " "} # False means user entered a blank
     end
+
+    def check_owner(obj)
+      obj.user == current_user
+    end
     
     # insert more helper methods here
   end

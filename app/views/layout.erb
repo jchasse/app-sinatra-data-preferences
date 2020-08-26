@@ -18,9 +18,13 @@
       <header class="branding">
         <small>
           <a href="/services">Home</a> <br>
-          <a href="/users/login">Log In</a> <br>
-          <a href="/users/logout">Log Out</a> <br>
-          </small> <br><br>
+          <% if !current_user%>
+            <a href="/users/login">Log In</a> <br>
+          <%end%>
+          <% if current_user%>
+            <a href="/users/logout">Log Out</a> <br>
+          <%end%>
+        </small> <br><br>
       </header>
 
         <%= yield %>
