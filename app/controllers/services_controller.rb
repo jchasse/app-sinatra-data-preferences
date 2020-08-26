@@ -14,7 +14,7 @@ class ServicesController < ApplicationController
         erb :'services/new'
     end
 
-    post '/services/new' do
+    post '/services' do
         service = Service.new(params)
         binding.pry
         if service.save
@@ -26,6 +26,9 @@ class ServicesController < ApplicationController
         end
     end
 
+    get '/services/:id' do
+
+    end
 
 
 end
