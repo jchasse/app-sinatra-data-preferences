@@ -13,8 +13,8 @@ class ServicesController < ApplicationController
 
     post '/services' do
         service = Service.new(params)
+        service.user_id = session[:user_id]
         if service.save
-            service.user_id = session[:user_id]
             redirect to "/services/#{service.id}"
         else
             #need to add error messaging
@@ -38,8 +38,9 @@ class ServicesController < ApplicationController
     end
 
     patch '/services/:id' do
-        redirect_if_not_logged_in
         binding.pry
+        raise "You got the right page"
+
     end
 
     delete '/services/:id' do
