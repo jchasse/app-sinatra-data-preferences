@@ -14,6 +14,18 @@ class ServicesController < ApplicationController
         erb :'services/new'
     end
 
+    post '/services/new' do
+        service = Service.new(params)
+        binding.pry
+        if service.save
+            service.user_id = session[:user_id]
+            redirect to "/services/#{service.id}"
+        else
+            #need to add error messaging
+            redirect to "services/new"
+        end
+    end
+
 
 
 end
