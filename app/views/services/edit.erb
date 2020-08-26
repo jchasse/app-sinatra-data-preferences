@@ -1,0 +1,10 @@
+<h3>Edit Service Below:</h3> 
+
+<form action="/services/<%= @service.id%>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="patch">
+    <input id="name" type="text" name="name" value=<%=@service.name%>> <br>
+    <input id="kind" type="text" name="kind" value=<%=@service.kind%>> <br>
+    <input id="level" type="text" name="level" value=<%=@service.level%>> <br>
+    <input type="submit" value="Submit"/>
+</form>
+
