@@ -33,7 +33,8 @@ class UsersController < ApplicationController
           session[:user_id] = user.id
           redirect '/services'
         else
-          redirect '/users/login'
+            flash[:message] = "Invalid input"
+            redirect '/users/login'
         end
     end
 
