@@ -1,9 +1,8 @@
-<a href='/services/new'>Add a New Service</a> <br>
+<a href="/services">All Services</a> <br><br>
+<a href='/services/new'>Add a New Service</a> <br><br>
 
 <ul>
-<% @user.services.each_with_index do |service, index| %>
-    <li><%= index+1%>: <%= service.name %> // <%= service.kind %> // <%= service.level %> </li>    
+<% @user.services.each_with_index do |service, index| %>  
+    <li><%= index+1%>: <a href="/services/<%=service.id%>"><%= service.name %> // <%= service.kind %> // <%= service.level %></a></li>  
 <%end%>
 </ul>
-
-

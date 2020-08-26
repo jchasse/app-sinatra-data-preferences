@@ -1,8 +1,19 @@
 <h3> Service ID <%= @service.id %> </h3>
 <h4> Name: <%= @service.name %> </h4>
 <h4> Kind: <%= @service.kind %> </h4>
-<h4> Level: <%= @service.level %> </h4>
+<h4> Level: <%= @service.level %> </h4><br>
 
-<a href="/services">All Services</a> <br><br>
+<% if @service.user == current_user%>
+<form action="/services/<%=@service.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Item">
+</form>
+<%end%> <br>
+
+<a href="/services">All Services</a> <br>
+<a href='/services/new'>Add a New Service</a> <br>
 <a href="/users/<%=@service.user_id%>">My Services</a> <br>
+
+<% if @service.user == current_user%>
 <a href="/services/<%=@service.id%>/edit">Edit Service</a> <br><br>
+<%end%> <br>

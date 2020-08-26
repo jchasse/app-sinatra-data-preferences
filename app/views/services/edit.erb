@@ -1,7 +1,14 @@
 <form action="/services/<%=@service.id%>" method="post">
     <input type="hidden" name="_method" value="patch">
-    <p>Service Name: <input type="text" name="name" value="<%=@service.name%>"></p>
-    <p>Service Kind: <input type="text" name="kind" value="<%=@service.kind%>"></p>
-    <p>Service Level: <input type="text" name="level" value="<%=@service.level%>"></p>
-    <input type="submit" value="Edit Item">
+    <p>Service Name: <input type="text" name="service[name]" value="<%=@service.name%>"></p>
+    <p>Service Kind: <input type="text" name="service[kind]" value="<%=@service.kind%>"></p>
+    <p>Service Level: <input type="text" name="service[level]" value="<%=@service.level%>"></p>
+    <input type="submit" value="Update Item">
   </form>
+
+<% if @service.user == current_user%>
+<form action="/services/<%=@service.id%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+    <input type="submit" value="Delete Item">
+</form>
+<%end%>

@@ -3,6 +3,7 @@ class ServicesController < ApplicationController
     get '/services' do
         redirect_if_not_logged_in
         @user = User.find_by(id: session[:user_id])
+        @services = Service.all
         erb :'services/index'
     end
 
@@ -38,19 +39,21 @@ class ServicesController < ApplicationController
     end
 
     patch '/services/:id' do
-        binding.pry
-        raise "You got the right page"
-
+        redirect_if_not_logged_in
+        @service = Service.find_by(id: params[:id])
+        if check_owner(@service)
+          @service.update(params[:service])
+        end
+          erb :'services/show'
     end
 
     delete '/services/:id' do
         redirect_if_not_logged_in
         service = Service.find_by(id: params[:id])
-        if check_owner(item)
+        if check_owner(service)
             service.delete
-        else
-          redirect '/services'
         end
+          redirect '/users/#{service.user_id}'
     end
 
 end
