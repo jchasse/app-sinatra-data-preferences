@@ -16,9 +16,11 @@ class ServicesController < ApplicationController
         service = Service.new(params)
         service.user_id = session[:user_id]
         if service.save
+            flash[:message] = "Saved successfully."
             redirect to "/services/#{service.id}"
         else
-            #need to add error messaging
+            binding.pry
+            flash[:message] = service.errors.full_messages
             redirect to "services/new"
         end
     end
@@ -34,15 +36,18 @@ class ServicesController < ApplicationController
         if @service = Service.find_by(id: params[:id])
             erb :'services/show'
         else
+            flash[:message] = "This service is not found. Please try another."
             redirect '/services'
         end
     end
 
     patch '/services/:id' do
         redirect_if_not_logged_in
-        @service = Service.find_by(id: params[:id])
-        if check_owner(@service)
-          @service.update(params[:service])
+        service = Service.find_by(id: params[:id])
+        if check_owner(service)
+          service.update(params[:service])
+        else
+            flash[:message] = "You do not have permission to update."
         end
           erb :'services/show'
     end
@@ -52,6 +57,8 @@ class ServicesController < ApplicationController
         service = Service.find_by(id: params[:id])
         if check_owner(service)
             service.delete
+        else
+            flash[:message] = "You do not have permission to update."
         end
           redirect '/users/#{service.user_id}'
     end

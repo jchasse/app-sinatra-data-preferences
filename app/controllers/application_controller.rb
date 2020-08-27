@@ -5,9 +5,8 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
     set :public_folder, 'public'
     set :views, 'app/views'
+    register Sinatra::Flash
   end
-
-  register Sinatra::Flash
 
   get "/" do
     erb :home
@@ -37,6 +36,9 @@ class ApplicationController < Sinatra::Base
     def check_owner(obj)
       obj.user == current_user
     end
+
+    def multi_error_display(array)
+      array.each do {|e| e }
     
     # insert more helper methods here
   end
