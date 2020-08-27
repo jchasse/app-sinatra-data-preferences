@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
 
     def redirect_if_not_logged_in
       if !current_user
-        # flash[:message] = "You must log in to see that page"
+        flash[:message] = "You must log in to see that page"
         redirect '/users/login'
       end
     end
@@ -37,9 +37,6 @@ class ApplicationController < Sinatra::Base
       obj.user == current_user
     end
 
-    def multi_error_display(array)
-      array.each do {|e| e }
-    
     # insert more helper methods here
   end
 

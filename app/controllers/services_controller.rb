@@ -19,8 +19,7 @@ class ServicesController < ApplicationController
             flash[:message] = "Saved successfully."
             redirect to "/services/#{service.id}"
         else
-            binding.pry
-            flash[:message] = service.errors.full_messages
+            flash[:message] = service.errors.full_messages.join(". ")
             redirect to "services/new"
         end
     end
@@ -49,7 +48,7 @@ class ServicesController < ApplicationController
         else
             flash[:message] = "You do not have permission to update."
         end
-          erb :'services/show'
+        redirect '/services'
     end
 
     delete '/services/:id' do
@@ -58,9 +57,9 @@ class ServicesController < ApplicationController
         if check_owner(service)
             service.delete
         else
-            flash[:message] = "You do not have permission to update."
+            flash[:message] = "You do not have permission to delete."
         end
-          redirect '/users/#{service.user_id}'
+        redirect '/services'
     end
 
 end

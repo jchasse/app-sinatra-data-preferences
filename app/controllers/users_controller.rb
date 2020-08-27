@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
     get '/users/signup' do 
         if current_user
+            flash[:message] = "Already a user."
             redirect to '/services'
         else
             erb :'/users/signup'
@@ -12,15 +13,17 @@ class UsersController < ApplicationController
         user = User.new(params)
         if user.save
             session[:user_id] = user.id
+            flash[:message] = "Sign up successful."
             redirect to '/services'
         else
-            raise "Need to enter error here around unable to save due to blank entered or not uniq"
+            flash[:message] = user.errors.full_messages.join(". ")
             redirect to '/users/signup'
         end
     end
    
     get '/users/login' do
         if current_user
+            flash[:message] = "Already a user."
             redirect to '/services'
         else
             erb :'/users/login'
@@ -33,7 +36,7 @@ class UsersController < ApplicationController
           session[:user_id] = user.id
           redirect '/services'
         else
-            flash[:message] = "Invalid input"
+            flash[:message] = "Invalid input. Please re-enter."
             redirect '/users/login'
         end
     end
@@ -44,6 +47,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
+        redirect_if_not_logged_in
         @user = User.find_by(params)
         @services = @user.services
         erb :'users/show'
