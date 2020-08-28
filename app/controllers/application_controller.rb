@@ -37,6 +37,10 @@ class ApplicationController < Sinatra::Base
       obj.user == current_user
     end
 
+    def obj_valid?(obj)
+      obj && check_owner(obj)
+    end
+
     # insert more helper methods here
   end
 

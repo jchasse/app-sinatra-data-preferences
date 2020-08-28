@@ -47,11 +47,15 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
-        #if statement for id existing?
         redirect_if_not_logged_in
         @user = User.find_by(params)
-        @services = @user.services
-        erb :'users/show'
+        if @user
+            @services = @user.services
+            erb :'users/show'
+        else
+            flash[:message] = "User does not exist."
+            redirect '/services'
+        end
       end
 
 end

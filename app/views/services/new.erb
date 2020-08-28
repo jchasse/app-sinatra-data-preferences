@@ -3,7 +3,7 @@
 <h3>New Service Below:</h3> 
 <form action="/services" method="post">
 
-    <select name="kind">
+    <select name="kind" required>
         <option value="electricity" selected>Electricity</option>
         <option value="cable">Cable</option>
         <option value="internet">Internet</option>
@@ -11,8 +11,8 @@
       </select> <br>
 
     <label for="name"> Company </label>
-    <input id="name" type="text" name="name"/> <br>
+    <input id="name" type="text" name="name"/> required<br>
     <label for="level"> Level </label>
-    <input id="level" type="text" name="level"/> <br>
+    <input id="level" type="text" name="level"/> required <br>
 <input type="submit" value="Submit"/>
 </form>
