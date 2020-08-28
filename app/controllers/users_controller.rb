@@ -47,6 +47,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do
+        #if statement for id existing?
         redirect_if_not_logged_in
         @user = User.find_by(params)
         @services = @user.services

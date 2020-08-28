@@ -43,15 +43,18 @@ class ServicesController < ApplicationController
     patch '/services/:id' do
         redirect_if_not_logged_in
         service = Service.find_by(id: params[:id])
-        if check_owner(service)
+        if service && check_owner(service)
           service.update(params[:service])
-        else
+        elsif service
             flash[:message] = "You do not have permission to update."
+        else
+            flash[:message] = "This service does not exist."
         end
         redirect '/services'
     end
 
     delete '/services/:id' do
+         #if statement for id existing?
         redirect_if_not_logged_in
         service = Service.find_by(id: params[:id])
         if check_owner(service)
