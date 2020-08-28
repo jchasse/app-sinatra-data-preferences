@@ -1,7 +1,28 @@
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+<!-- Add font awesome icons to buttons  -->
+<!-- <p>Icon buttons:</p>
+<button class="btn"><i class="fa fa-home"></i></button>
+<button class="btn"><i class="fa fa-bars"></i></button>
+<button class="btn"><i class="fa fa-trash"></i></button>
+<button class="btn"><i class="fa fa-close"></i></button>
+<button class="btn"><i class="fa fa-folder"></i></button>
+
+<p>Icon buttons with text:</p>
+<button class="btn"><i class="fa fa-home"></i> Home</button>
+<button class="btn"><i class="fa fa-bars"></i> Menu</button>
+<button class="btn"><i class="fa fa-trash"></i> Trash</button>
+<button class="btn"><i class="fa fa-close"></i> Close</button>
+<button class="btn"><i class="fa fa-folder"></i> Folder</button> -->
+
+
 <%=flash[:message]%>
 
 <h3> Welcome <%=@user.first_name%> <%=@user.last_name%> </h3>
 
+<h3> Ready to start? </h3>
+
+<!-- <a href="/users/<%=@user.id%>"> <img src="images/dog-box-photo.jpeg" alt="new service" title="We're here to help you!"><br> </a> -->
 <a href="/users/<%=@user.id%>">View or Edit My Services</a> <br>
 <a href='/services/new'>Add a new Service</a> <br>
 
