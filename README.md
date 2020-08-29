@@ -1,11 +1,5 @@
 
-# app-sinatra-data-preferences
-
-Usage
-To use this app, just clone, run rake db:migrate and then run shotgun. Everything should be set up.
-
-Project Title
-Sinatra Service Persisting App
+Sinatra - Service Saving App
 
 Description
 This app is the version 1.0 for engaging with a conceriege system to handle all your service setup upon moving apartments or homes. This version creates a user and service record to build from in future versions.
