@@ -2,7 +2,7 @@ class ApplicationController < Sinatra::Base
 
   configure do
     enable :sessions
-    set :session_secret, "secret"
+    set :session_secret, "unknown_secret_penguin"
     set :public_folder, 'public'
     set :views, 'app/views'
     register Sinatra::Flash
@@ -30,7 +30,7 @@ class ApplicationController < Sinatra::Base
     end
 
     def is_not_blank?(hash)
-      !hash.values.find {|v| v == "" || v == " "} # False means user entered a blank
+      !hash.values.find {|v| v == "" || v == " "} 
     end
 
     def check_owner(obj)
@@ -41,7 +41,6 @@ class ApplicationController < Sinatra::Base
       obj && check_owner(obj)
     end
 
-    # insert more helper methods here
   end
 
 end
